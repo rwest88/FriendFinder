@@ -10,11 +10,11 @@ var friends = require("../data/friends");
 // ===============================================================================
 
 module.exports = function(app) {
+
   // API GET Requests
   // Below code handles when users "visit" a page.
   // When a user visits a link, they are shown a JSON of the data in the table
   // ---------------------------------------------------------------------------
-
   app.get("/api/friends", function(req, res) {
     res.json(friends);
   });
@@ -47,8 +47,9 @@ module.exports = function(app) {
     res.json(bestMatch);
   });
 
-  app.post("/api/clear", function() {
-    // Empty out the arrays of data
-    friends = [];
+  // "secret" GET route
+  app.get("/api/clear", function(req, res) {
+    // Empty out the array, send to client
+    res.json(friends = []);
   });
 };
